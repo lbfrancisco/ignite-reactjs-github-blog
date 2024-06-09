@@ -1,7 +1,6 @@
-import { User } from '@/types/user'
+import { useGitHub } from '@/hooks/use-github'
 import { SiGithub } from '@icons-pack/react-simple-icons'
 import { ArrowUpRightFromSquare, Building, Users } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import { Link } from '../link'
 import {
   InfoContainer,
@@ -10,19 +9,9 @@ import {
   InfoHeader,
   ProfileContainer,
 } from './styles'
-import { api } from '@/lib/api'
 
 export function Profile() {
-  const [user, setUser] = useState<User>({} as User)
-
-  useEffect(() => {
-    async function fetchUser() {
-      const response = await api.get('/users/lbfrancisco')
-      setUser(response.data)
-    }
-
-    fetchUser()
-  }, [])
+  const { user } = useGitHub()
 
   return (
     <ProfileContainer>

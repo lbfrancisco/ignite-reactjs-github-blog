@@ -1,10 +1,11 @@
 import { User } from './user'
 
 export type Issue = {
-  login: Pick<User, 'login'>
+  user: User
   title: string
   body: string
   comments: number
   number: number
-  updated_at: string
+  created_at: string
+  html_url: string
 }

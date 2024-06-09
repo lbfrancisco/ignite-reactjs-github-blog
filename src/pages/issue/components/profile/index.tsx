@@ -1,4 +1,7 @@
+import { Issue } from '@/types/issue'
 import { SiGithub } from '@icons-pack/react-simple-icons'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import {
   ArrowLeft,
   ArrowUpRightFromSquare,
@@ -14,7 +17,11 @@ import {
   IssueProfileContainer,
 } from './styles'
 
-export function IssueProfile() {
+type IssueProfileProps = {
+  issue: Issue
+}
+
+export function IssueProfile({ issue }: IssueProfileProps) {
   return (
     <IssueProfileContainer>
       <InfoWrapper>
@@ -23,24 +30,27 @@ export function IssueProfile() {
             <ArrowLeft size={12} />
             Voltar
           </Link>
-          <Link href="/">
+          <Link href={issue.html_url}>
             Ver no GitHub
             <ArrowUpRightFromSquare size={12} />
           </Link>
         </InfoHeader>
-        <InfoTitle>JavaScript types and data structures</InfoTitle>
+        <InfoTitle>{issue.title}</InfoTitle>
         <InfoFooter>
           <span>
             <SiGithub size={18} />
-            lbfrancisco
+            {/* {issue.user.login} */}
           </span>
           <span>
             <Calendar size={18} />
-            Há 1 dia
+            {formatDistanceToNow(new Date(issue.created_at), {
+              addSuffix: true,
+              locale: ptBR,
+            })}
           </span>
           <span>
             <MessageCircle size={18} />
-            10 comentários
+            {issue.comments} {issue.comments > 1 ? 'comentários' : 'comentário'}
           </span>
         </InfoFooter>
       </InfoWrapper>

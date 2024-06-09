@@ -1,4 +1,4 @@
-import Markdown from 'markdown-to-jsx'
+import Markdown from 'react-markdown'
 import styled from 'styled-components'
 
 export const PostContainer = styled.main`

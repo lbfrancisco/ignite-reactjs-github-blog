@@ -1,3 +1,4 @@
+import remarkGfm from 'remark-gfm'
 import { PostContainer, PostContent } from './styles'
 
 type PostProps = {
@@ -7,7 +8,7 @@ type PostProps = {
 export function Post({ content }: PostProps) {
   return (
     <PostContainer>
-      <PostContent>{content}</PostContent>
+      <PostContent remarkPlugins={[remarkGfm]}>{content}</PostContent>
     </PostContainer>
   )
 }
