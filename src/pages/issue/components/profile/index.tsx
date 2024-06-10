@@ -39,7 +39,7 @@ export function IssueProfile({ issue }: IssueProfileProps) {
         <InfoFooter>
           <span>
             <SiGithub size={18} />
-            {/* {issue.user.login} */}
+            {issue.user.login}
           </span>
           <span>
             <Calendar size={18} />

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import { Post } from './components/post'
 
 export function Issue() {
-  const { issue, fetchIssue } = useGitHub()
+  const { fetchIssue, issue, isIssueLoading } = useGitHub()
   const { number } = useParams()
 
   useEffect(() => {
@@ -18,8 +18,17 @@ export function Issue() {
   return (
     <div>
       <Header />
-      <IssueProfile issue={issue} />
-      <Post content={issue.body} />
+      {isIssueLoading ? (
+        <div>Carregando...</div>
+      ) : (
+        issue &&
+        issue.number && (
+          <>
+            <IssueProfile issue={issue} />
+            <Post body={issue.body} />
+          </>
+        )
+      )}
     </div>
   )
 }

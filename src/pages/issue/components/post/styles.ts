@@ -9,4 +9,12 @@ export const PostContainer = styled.main`
   text-align: justify;
 `
 
-export const PostContent = styled(Markdown)``
+export const PostContent = styled(Markdown)`
+  > pre div {
+    background-color: ${({ theme }) => theme['base-post']} !important ;
+  }
+
+  > pre div code {
+    background-color: ${({ theme }) => theme['base-post']} !important ;
+  }
+`
